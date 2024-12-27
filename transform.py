@@ -25,8 +25,6 @@ ndc = list(
 )
 
 
-
-
 conn = next(get_db())
 insert_query = "INSERT INTO bronze.drug_ndc (result) VALUES (%s)"
 
