@@ -1,5 +1,5 @@
 create schema bronze
-create table bronze.drug_ndc
+create table bronze.stg_drug_ndc
 (
     result jsonb
 )
