@@ -26,7 +26,7 @@ ndc = list(
 
 
 conn = next(get_db())
-insert_query = "INSERT INTO bronze.drug_ndc (result) VALUES (%s)"
+insert_query = "INSERT INTO fda_raw.ndc (result) VALUES (%s)"
 
 for x in ndc:
     with conn.cursor() as cursor:
