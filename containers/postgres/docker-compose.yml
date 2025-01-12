@@ -3,9 +3,9 @@ services:
     container_name: postgres
     image: postgres:latest
     environment:
-      - POSTGRES_USER=potok
-      - POSTGRES_PASSWORD=potok
-      - POSTGRES_DB=fda
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     ports:
       - "5432:5432"
     restart: always
@@ -14,8 +14,8 @@ services:
     container_name: pgadmin
     image: dpage/pgadmin4:latest
     environment:
-      - PGADMIN_DEFAULT_EMAIL=potokdes@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=example
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - "5050:80"
     restart: always
