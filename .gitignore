@@ -110,3 +110,4 @@ data/
 .DS_Store
 
 config/local/
+logs/
