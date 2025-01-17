@@ -1,13 +1,16 @@
 import json
 import psycopg2
 from psycopg2.extras import Json
+from dotenv import load_dotenv
+import os
+load_dotenv('./config/local/.env')
 
 psycopg2.extensions.register_adapter(dict, psycopg2.extras.Json)
 
 
 def get_db():
     conn = psycopg2.connect(
-        database="fda", user="potok", password="potok", host="localhost", port=5432
+        database="fda", user=os.getenv("POSTGRES_USER"), password=os.getenv("POSTGRES_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT")
     )
     yield conn
 
@@ -26,7 +29,7 @@ ndc = list(
 
 
 conn = next(get_db())
-insert_query = "INSERT INTO fda_raw.ndc (result) VALUES (%s)"
+insert_query = "INSERT INTO raw_fda.ndc (result) VALUES (%s)"
 
 for x in ndc:
     with conn.cursor() as cursor:
