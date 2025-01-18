@@ -4,3 +4,5 @@ db-down:
 	docker-compose --env-file ./config/local/.env --project-directory ./containers/postgres/docker-compose.yml down
 dbt-debug:
 	dbt debug --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+dbt-run:
+	dbt run --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
