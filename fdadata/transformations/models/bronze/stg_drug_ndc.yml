@@ -7,9 +7,14 @@ models:
       - name: product_id
         data_type: jsonb
         description: "ProductID is a concatenation of the NDC product code and SPL documentID."
+        tests:
+          - not_null
+          - unique
       - name: product_ndc
         data_type: text
         description: "The labeler manufacturer code and product code segments of the NDC number, separated by a hyphen."
+        tests:
+          - not_null
       - name: brand_name
         data_type: text
         description: "Brand or trade name of the drug product."
@@ -34,6 +39,9 @@ models:
       - name: marketing_category
         data_type: text
         description: "Product types are broken down into several potential Marketing Categories, such as NDA/ANDA/BLA, OTC Monograph, or Unapproved Drug."
+        tests:
+          - accepted_values:
+              values: ["ANDA", "BLA","BULK INGREDIENT", "BULK INGREDIENT FOR HUMAN PRESCRIPTION COMPOUNDING","DRUG FOR FURTHER PROCESSING","EMERGENCY USE AUTHORIZATION","EXPORT ONLY","NDA","NDA AUTHORIZED GENERIC","OTC MONOGRAPH DRUG","OTC MONOGRAPH FINAL","OTC MONOGRAPH NOT FINAL","UNAPPROVED DRUG FOR USE IN DRUG SHORTAGE","UNAPPROVED DRUG OTHER","UNAPPROVED HOMEOPATHIC","UNAPPROVED MEDICAL GAS"]
       - name: dea_schedule
         data_type: text
         description: "This is the assigned DEA Schedule number as reported by the labeler. Values are CI, CII, CIII, CIV, and CV."
