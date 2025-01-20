@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: drug_manufacturer
+    description: "Dataset drugs for manufacurer"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: product_id
+        data_type: text
+        description: "ProductID is a concatenation of the NDC product code and SPL documentID."
+        tests:
+          - not_null
+          - unique
+      - name: labeler_name
+        data_type: text
+        description: "Name of a drug labeler"
