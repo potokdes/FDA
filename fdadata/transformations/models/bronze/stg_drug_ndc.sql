@@ -1,6 +1,5 @@
-{{ config(materialized='table') }}
 select
-    (result -> 'product_id') as product_id,
+    (result ->> 'product_id') as product_id,
     (result ->> 'product_ndc') as product_ndc,
     (result ->> 'brand_name') as brand_name,
     (result -> 'pharm_class') as pharm_class,

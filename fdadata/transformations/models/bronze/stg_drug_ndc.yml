@@ -3,9 +3,12 @@ version: 2
 models:
   - name: stg_drug_ndc
     description: "Unpacking values from raw ndc dataset in json format"
+    config:
+      contract:
+        enforced: true
     columns:
       - name: product_id
-        data_type: jsonb
+        data_type: text
         description: "ProductID is a concatenation of the NDC product code and SPL documentID."
         tests:
           - not_null
