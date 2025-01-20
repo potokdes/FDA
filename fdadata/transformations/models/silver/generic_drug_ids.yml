@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: generic_drug_ids
+    description: "Dataset containg only generic drugs"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: product_id
+        data_type: text
+        description: "ProductID is a concatenation of the NDC product code and SPL documentID."
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('stg_drug_ndc') 
+              field: product_id
+      - name: generic_name
+        data_type: text
+        description: "Generic name(s) of the drug product."
+    
