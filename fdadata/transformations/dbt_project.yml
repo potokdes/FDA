@@ -27,7 +27,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 
 models:
-  fda_data_tran:
+  transformations:
     bronze:
       +schema: bronze
       +materialized: table

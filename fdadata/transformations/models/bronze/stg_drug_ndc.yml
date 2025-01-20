@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: stg_drug_ndc
+    description: "Unpacking values from raw ndc dataset in json format"
+    columns:
+      - name: product_id
+        data_type: jsonb
+        description: "ProductID is a concatenation of the NDC product code and SPL documentID."
+      - name: product_ndc
+        data_type: text
+        description: "The labeler manufacturer code and product code segments of the NDC number, separated by a hyphen."
+      - name: brand_name
+        data_type: text
+        description: "Brand or trade name of the drug product."
+      - name: pharm_class
+        data_type: jsonb
+        description: "These are the reported pharmacological class categories corresponding to the SubstanceNames listed above."
+      - name: manufacturer_name
+        data_type: jsonb
+        description: "Name of manufacturer or company that makes this drug product, corresponding to the labeler code segment of the NDC."
+      - name: is_original_packager
+        data_type: text
+        description: "Whether or not the drug has been repackaged for distribution."
+      - name: generic_name
+        data_type: text
+        description: "Generic name(s) of the drug product."
+      - name: dosage_form
+        data_type: text
+        description: "The drug’s dosage form. There is no standard, but values may include terms like `tablet` or `solution for injection`."
+      - name: route
+        data_type: text
+        description: "The route of administation of the drug product."
+      - name: marketing_category
+        data_type: text
+        description: "Product types are broken down into several potential Marketing Categories, such as NDA/ANDA/BLA, OTC Monograph, or Unapproved Drug."
+      - name: dea_schedule
+        data_type: text
+        description: "This is the assigned DEA Schedule number as reported by the labeler. Values are CI, CII, CIII, CIV, and CV."
+      - name: active_ingredients
+        data_type: jsonb
+        description: "List of Json objects containg name of active ingredient and the strength of it"
+      - name: product_type
+        data_type: text
+        description: "Type of drug product"
+      - name: labeler_name
+        data_type: jsonb
+        description: "manufacturer name"
