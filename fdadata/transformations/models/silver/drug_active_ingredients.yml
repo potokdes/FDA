@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: drug_active_ingredients
+    description: "Dataset containg only generic drugs"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: product_id
+        data_type: text
+        description: "ProductID is a concatenation of the NDC product code and SPL documentID."
+        tests:
+          - not_null
+      - name: name
+        data_type: text
+        description: "Name of the active ingreedinet"
+        tests:
+          - not_null
+      - name: strength
+        data_type: text
+        description: "Name of the active ingreedinet"
+        tests:
+          - not_null
+
+    
