@@ -3,7 +3,6 @@ select
     (result ->> 'product_ndc') as product_ndc,
     (result ->> 'brand_name') as brand_name,
     (result -> 'pharm_class') as pharm_class,
-    ((result -> 'openfda') -> 'manufacturer_name') as manufacturer_name,
     (result -> 'openfda') -> 'is_original_packager' as is_original_packager,
     (result ->> 'generic_name') as generic_name,
     (result ->> 'dosage_form') as dosage_form,

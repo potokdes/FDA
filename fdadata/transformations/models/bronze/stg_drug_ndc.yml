@@ -24,9 +24,6 @@ models:
       - name: pharm_class
         data_type: jsonb
         description: "These are the reported pharmacological class categories corresponding to the SubstanceNames listed above."
-      - name: manufacturer_name
-        data_type: jsonb
-        description: "Name of manufacturer or company that makes this drug product, corresponding to the labeler code segment of the NDC."
       - name: is_original_packager
         data_type: jsonb
         description: "Whether or not the drug has been repackaged for distribution."
