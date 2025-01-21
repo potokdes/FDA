@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: fda
+    database:   
+    schema: raw_fda  
+    tables:
+      - name: ndc
+        description: >
+          One recod for drug. 
+        columns:
+          - name: result
+            description: Json schema contain all informations about drug

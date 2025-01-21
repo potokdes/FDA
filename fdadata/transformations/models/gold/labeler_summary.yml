@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: labeler_summary
+    description: "Model that presents aggreations for summary"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: labeler_name
+        data_type: text
+        description: "Name of the drugs labeler"
+        tests:
+          - not_null
+          - unique
+      - name: total_drugs
+        data_type: bigint
+        description: "Number of all kinds of drug produced/ labeled by given labeler"
+        tests:
+          - not_null
+      - name: generic_drugs_count
+        data_type: bigint
+        description: "Number of generic drugs produced/ labeled by given labeler"
+        tests:
+          - not_null
+      - name: distinct_active_ingredients
+        data_type: bigint
+        description: "Number of distinct active ingredients used by given labeler"
+        tests:
+          - not_null

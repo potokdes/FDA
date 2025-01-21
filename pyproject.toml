@@ -10,6 +10,10 @@ readme = "README.md"
 python = "^3.13"
 jupyter = "^1.1.1"
 psycopg2-binary = "^2.9.10"
+dbt = "^1.0.0.38.22"
+dbt-core = "^1.9.1"
+dbt-postgres = "^1.9.0"
+python-dotenv = "^1.0.1"
 
 
 [build-system]
