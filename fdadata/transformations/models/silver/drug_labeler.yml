@@ -18,3 +18,20 @@ models:
         description: "Name of a drug labeler"
         tests:
           - not_null
+          
+unit_tests:
+  - name: test_is_labeler_deduplicated
+    model: drug_labeler
+    given:
+      - input: ref('stg_drug_ndc')
+        rows:
+          - { product_id: "1", labeler_name: "a " }
+          - { product_id: "2", labeler_name: "a, " }
+          - { product_id: "3", labeler_name: " a" }
+          - { product_id: "4", labeler_name: "a" }
+    expect: # the expected output given the inputs above
+      rows:
+        - { product_id: "1", labeler_name: "a" }
+        - { product_id: "2", labeler_name: "a" }
+        - { product_id: "3", labeler_name: "a" }
+        - { product_id: "4", labeler_name: "a" }

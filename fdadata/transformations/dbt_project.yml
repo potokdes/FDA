@@ -16,15 +16,6 @@ snapshot-paths: ["snapshots"]
 
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
-  - "dbt_packages"
-
-
-# Configuring models
-# Full documentation: https://docs.getdbt.com/docs/configuring-models
-
-# In this example config, we tell dbt to build all models in the example/
-# directory as views. These settings can be overridden in the individual model
-# files using the `{{ config(...) }}` macro.
 
 models:
   transformations:
@@ -38,4 +29,5 @@ models:
       +schema: gold
       +materialized: table
 
-
+data_tests:
+  +store_failures: true
