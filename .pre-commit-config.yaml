@@ -1,0 +1,15 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.4 # Use the latest stable version
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+        args: [--fix, "./fdadata/ingestion"]
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 2.2.0 # Use the latest stable version
+    hooks:
+      - id: sqlfluff-lint
+        args: [--dialect, postgres] # Change to your SQL dialect (e.g., mysql, snowflake, bigquery)
+      - id: sqlfluff-fix
+        args: [--dialect, postgres]
