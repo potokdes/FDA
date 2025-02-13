@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: labeler_summary
+  - name: labelers
     description: "Model that presents aggreations for summary"
     config:
       contract:

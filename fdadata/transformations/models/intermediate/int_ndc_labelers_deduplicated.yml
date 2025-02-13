@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: drug_manufacturer
+  - name: int_ndc_labelers_deduplicated
     description: "Dataset drugs for manufacurer"
     config:
       contract:
@@ -21,9 +21,9 @@ models:
           
 unit_tests:
   - name: test_is_labeler_deduplicated
-    model: drug_labeler
+    model: int_ndc_labelers_deduplicated
     given:
-      - input: ref('stg_drug_ndc')
+      - input: ref('stg_fda__ndc')
         rows:
           - { product_id: "1", labeler_name: "a " }
           - { product_id: "2", labeler_name: "a, " }
