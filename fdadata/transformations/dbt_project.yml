@@ -19,14 +19,14 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   transformations:
-    bronze:
-      +schema: bronze
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
       +materialized: table
-    silver:
-      +schema: silver
-      +materialized: table
-    gold:
-      +schema: gold
+    marts:
+      +schema: marts
       +materialized: table
 
 data_tests:
