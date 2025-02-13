@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: generic_drug_ids
+  - name: int_generic_drug_identificated
     description: "Dataset containg only generic drugs"
     config:
       contract:

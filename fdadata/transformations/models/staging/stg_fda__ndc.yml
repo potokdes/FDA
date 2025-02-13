@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_drug_ndc
+  - name: stg_fda__ndc
     description: "Unpacking values from raw ndc dataset in json format"
     config:
       contract:

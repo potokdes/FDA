@@ -1,9 +1,9 @@
 with active_ingreditens as (
     select
         product_id,
-        (jsonb_array_elements(active_ingredients) ->> 'name') as name,
+        (jsonb_array_elements(active_ingredients) ->> 'name'),
         (jsonb_array_elements(active_ingredients) ->> 'strength') as strength
-    from {{ ref("stg_drug_ndc") }}
+    from {{ ref("stg_fda__ndc") }}
 )
 ,
 colese_missing_strength as (

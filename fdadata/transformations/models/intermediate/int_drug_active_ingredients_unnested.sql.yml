@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: drug_active_ingredients
+  - name: int_drug_active_ingredients_unnested.sql
     description: "Dataset containg only generic drugs"
     config:
       contract:
