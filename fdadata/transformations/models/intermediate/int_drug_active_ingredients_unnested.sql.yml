@@ -12,7 +12,7 @@ models:
         description: "ProductID is a concatenation of the NDC product code and SPL documentID."
         tests:
           - not_null
-      - name: name
+      - name: ingredient_name
         data_type: text
         description: "Name of the active ingreedinet"
         tests:
