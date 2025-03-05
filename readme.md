@@ -28,7 +28,7 @@ Prerequisites:
    1. Open pgAdmin -> it is a part of docker compose and should be avaliable in your browser: `http://localhost:5050`
    2. Connect to the fda database (create server connection, use the same parameters as in .env configuration file)
    3. Copy the sql from `fdadata/create_script.sql` and run the script in browser. (if in terminal: CREATE SCHEMA raw_fda AUTHORIZATION [POSTGRES_USER];)
-   4. Download FDA data from: [LINK](https://api.fda.gov/download.json) and save as: "./data/drug-ndc-0001-of-0001.json"
+   4. Download FDA data from: [Drug NDC](https://download.open.fda.gov/drug/ndc/drug-ndc-0001-of-0001.json.zip). More data from FDA API can be found [Here](https://api.fda.gov/download.json). Save file as: "./data/drug-ndc-0001-of-0001.json"
    5. Run python script `fdadata/ingestion/load.py`
 8. Test if the dbt can connect to db
    `dbt debug --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/`
