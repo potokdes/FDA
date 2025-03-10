@@ -17,6 +17,8 @@ python-dotenv = "^1.0.1"
 ruff = "^0.9.1"
 sqlfluff = "^3.3.0"
 pre-commit = "^4.1.0"
+requests = "^2.32.3"
+beautifulsoup4 = "^4.13.3"
 
 
 [build-system]
