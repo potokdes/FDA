@@ -5,10 +5,14 @@ db-down:
 dbt-debug:
 	dbt debug --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
 dbt-run:
-	dbt run --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+	dbt run --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/ --full-refresh
 dbt-build:
 	dbt build --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
 dbt-clean:
 	dbt clean --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+dbt-deps:
+	dbt deps --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+dbt-test:
+	dbt test --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
 sql-format:
 	sqlfluff fix --dialect postgres fdadata/transformations/models
