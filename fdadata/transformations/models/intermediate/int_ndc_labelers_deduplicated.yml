@@ -2,7 +2,15 @@ version: 2
 
 models:
   - name: int_ndc_labelers_deduplicated
-    description: "A deduplicated list of drug labelers, with standardized names and extracted labeler codes."
+    description: "
+      A deduplicated list of drug labelers, with standardized names and extracted labeler codes.
+      Contains following logic:
+      1.  Initial `labeler_name` cleaning using regex and replace rules.
+      2.  Extraction of the `labeler_code` from the `ndc` column.
+      3.  Grouping drugs by `labeler_code` and counting the different variations of `labeler_name` for each group.
+      4.  Identification of the most commonly used `labeler_name` within each group.
+      5.  Assignment of the most commonly used `labeler_name` to all drugs within the respective `labler_code` group.
+      "
     config:
       contract:
         enforced: true
@@ -45,18 +53,18 @@ unit_tests:
     given:
       - input: ref('stg_fda__ndc')
         rows:
-          - {product_ndc: "1-1", labeler_name: "a company" }
-          - {product_ndc: "1-1", labeler_name: "a co." }
-          - {product_ndc: "1-1", labeler_name: "a, co." }
-          - {product_ndc: "1-1", labeler_name: "a, ltd." }
-          - {product_ndc: "1-1", labeler_name: "a, inc." }
-          - {product_ndc: "1-1", labeler_name: "a, company" }
-          - {product_ndc: "1-1", labeler_name: "a, corporation." }
-          - {product_ndc: "1-1", labeler_name: "a s.l." }
-          - {product_ndc: "1-1", labeler_name: "a s.a." }
-          - {product_ndc: "1-1", labeler_name: "aa " }
-          - {product_ndc: "2-1", labeler_name: "b inc" }
-          - {product_ndc: "2-1", labeler_name: "b " }
+          - { product_ndc: "1-1", labeler_name: "a company" }
+          - { product_ndc: "1-1", labeler_name: "a co." }
+          - { product_ndc: "1-1", labeler_name: "a, co." }
+          - { product_ndc: "1-1", labeler_name: "a, ltd." }
+          - { product_ndc: "1-1", labeler_name: "a, inc." }
+          - { product_ndc: "1-1", labeler_name: "a, company" }
+          - { product_ndc: "1-1", labeler_name: "a, corporation." }
+          - { product_ndc: "1-1", labeler_name: "a s.l." }
+          - { product_ndc: "1-1", labeler_name: "a s.a." }
+          - { product_ndc: "1-1", labeler_name: "aa " }
+          - { product_ndc: "2-1", labeler_name: "b inc" }
+          - { product_ndc: "2-1", labeler_name: "b " }
     expect:
       rows:
         - { labeler_code: "1", labeler_name: "a" }
@@ -71,4 +79,3 @@ unit_tests:
         - { labeler_code: "1", labeler_name: "a" }
         - { labeler_code: "2", labeler_name: "b" }
         - { labeler_code: "2", labeler_name: "b" }
-
