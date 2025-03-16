@@ -2,36 +2,73 @@ version: 2
 
 models:
   - name: int_ndc_labelers_deduplicated
-    description: "Dataset drugs for manufacurer"
+    description: "A deduplicated list of drug labelers, with standardized names and extracted labeler codes."
     config:
       contract:
         enforced: true
     columns:
       - name: product_id
         data_type: text
-        description: "ProductID is a concatenation of the NDC product code and SPL documentID."
+        description: "A unique identifier for each product, created by concatenating the NDC product code with the SPL document ID."
         tests:
           - not_null
           - unique
       - name: labeler_name
         data_type: text
-        description: "Name of a drug labeler"
+        description: "The standardized name of the drug labeler, derived from the raw dataset through cleaning and deduplication."
         tests:
           - not_null
-          
+      - name: labeler_code
+        data_type: text
+        description: "A numeric code identifying the labeler, extracted from the first segment of the NDC code."
+        tests:
+          - not_null
+
 unit_tests:
-  - name: test_is_labeler_deduplicated
+  - name: test_should_extract_labeler_code_correctly
     model: int_ndc_labelers_deduplicated
     given:
       - input: ref('stg_fda__ndc')
         rows:
-          - { product_id: "1", labeler_name: "a " }
-          - { product_id: "2", labeler_name: "a, " }
-          - { product_id: "3", labeler_name: " a" }
-          - { product_id: "4", labeler_name: "a" }
-    expect: # the expected output given the inputs above
+          - { product_id: "1", product_ndc: "1-2" }
+          - { product_id: "2", product_ndc: "11-2" }
+          - { product_id: "3", product_ndc: "111-4" }
+          - { product_id: "4", product_ndc: "1111-5" }
+    expect:
       rows:
-        - { product_id: "1", labeler_name: "a" }
-        - { product_id: "2", labeler_name: "a" }
-        - { product_id: "3", labeler_name: "a" }
-        - { product_id: "4", labeler_name: "a" }
+        - { product_id: "1", labeler_code: "1" }
+        - { product_id: "2", labeler_code: "11" }
+        - { product_id: "3", labeler_code: "111" }
+        - { product_id: "4", labeler_code: "1111" }
+  - name: test_should_clean_and_select_most_commonly_used_name
+    model: int_ndc_labelers_deduplicated
+    given:
+      - input: ref('stg_fda__ndc')
+        rows:
+          - {product_ndc: "1-1", labeler_name: "a company" }
+          - {product_ndc: "1-1", labeler_name: "a co." }
+          - {product_ndc: "1-1", labeler_name: "a, co." }
+          - {product_ndc: "1-1", labeler_name: "a, ltd." }
+          - {product_ndc: "1-1", labeler_name: "a, inc." }
+          - {product_ndc: "1-1", labeler_name: "a, company" }
+          - {product_ndc: "1-1", labeler_name: "a, corporation." }
+          - {product_ndc: "1-1", labeler_name: "a s.l." }
+          - {product_ndc: "1-1", labeler_name: "a s.a." }
+          - {product_ndc: "1-1", labeler_name: "aa " }
+          - {product_ndc: "2-1", labeler_name: "b inc" }
+          - {product_ndc: "2-1", labeler_name: "b " }
+    expect:
+      rows:
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "1", labeler_name: "a" }
+        - { labeler_code: "2", labeler_name: "b" }
+        - { labeler_code: "2", labeler_name: "b" }
+
