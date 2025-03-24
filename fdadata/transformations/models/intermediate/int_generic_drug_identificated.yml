@@ -19,4 +19,3 @@ models:
       - name: generic_name
         data_type: text
         description: "Generic name(s) of the drug product."
-    
