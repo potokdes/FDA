@@ -7,7 +7,13 @@ sources:
     tables:
       - name: ndc
         description: >
-          One recod for drug. 
+          One record for drug. 
         columns:
           - name: result
-            description: Json schema contain all informations about drug
+            description: Json schema contains all information about drug.
+      - name: faers
+        description: >
+          One record per adverse event. 
+        columns:
+          - name: result
+            description: Json schema contains all information about adverse event.
