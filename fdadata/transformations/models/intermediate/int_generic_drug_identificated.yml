@@ -16,23 +16,6 @@ models:
           - relationships:
               to: ref('stg_drug_ndc') 
               field: product_id
-      - name: is_generic
-        data_type: boolean
-        description: "Indicates whether the drug is classified as generic." 
-      - name: brand_name
+      - name: generic_name
         data_type: text
-        description: "Indicates whether the drug is classified as generic." 
-      - name: product_ndc
-        data_type: text
-        description: "The labeler manufacturer code and product code segments of the NDC number, separated by a hyphen."
-      - name: product_type
-        data_type: text
-        description: "Type of drug product"
-      - name: route
-        data_type: text
-        description: "The drug’s dosage form. There is no standard, but values may include terms like `tablet` or `solution for injection`."
-      - name: dosage_form
-        data_type: text
-        description: "Indicates whether the drug is classified as generic." 
-
-    
+        description: "Generic name(s) of the drug product."
