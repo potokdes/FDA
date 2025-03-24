@@ -37,11 +37,28 @@ _Describe how this will be tested._
 - **Should it be tested manually, or will automated tests be added?**  
 
 ## 📅 Estimated Effort  
-_Provide a rough estimate of complexity._  
-- **Small** (Less than a day)  
-- **Medium** (1-3 days)  
-- **Large** (More than 3 days)  
-- **Story points (if using Agile)**  
+_Provide a rough estimate of complexity based on scope, unknowns, and required work._  
+
+- **🟢 Small** (Less than a week, max few hours in total)  
+  - Straightforward task with **clear requirements**  
+  - **Minimal unknowns** and low risk  
+  - Example: Updating text, fixing a simple bug, minor UI tweak  
+
+- **🟡 Medium** (1-3 weeks)  
+  - Requires some investigation or logic changes  
+  - **Some unknowns** that may require discussion or testing  
+  - Example: Implementing a small feature, modifying an API endpoint  
+
+- **🔴 Large** (More than 3 weeks)  
+  - Complex implementation with **significant unknowns**  
+  - May involve multiple components or external dependencies  
+  - Likely requires **collaboration** with other team members  
+  - Example: Refactoring a module, adding a new service  
+
+- **❓ Extra-Large / Research Needed** (Unclear timeline)  
+  - **High uncertainty**—needs discovery before estimating  
+  - May involve architectural changes or new integrations  
+  - Requires a **separate research task** before development  
 
 ## 🚀 Additional Notes  
 _Any other comments, open questions, or considerations._  
