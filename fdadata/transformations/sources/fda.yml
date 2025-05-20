@@ -15,5 +15,9 @@ sources:
         description: >
           One record per adverse event. 
         columns:
+          - name: id
+            description: Unique id of the record.
+          - name: source_file
+            description: Name of the source file.
           - name: result
             description: Json schema contains all information about adverse event.

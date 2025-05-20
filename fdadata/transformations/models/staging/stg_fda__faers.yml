@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: stg_fda__faers
+    description: "Unpacking values from raw faers dataset in json format"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: safety_report_id
+        data_type: text
+        description: "ProductID is a concatenation of the NDC product code and SPL documentID."
+        tests:
+          - not_null
+          - unique
+      - name: safety_report_version
+        data_type: text
+        description: "Company number"
+      - name: company_number
+        data_type: text
+        description: "Company number"
+      - name: _source_file
+        data_type: text
+        description: "Name of the source file."
