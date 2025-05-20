@@ -7,29 +7,29 @@ db-down:
 
 # DBT Commands
 dbt-debug:
-	dbt debug --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+	poetry run dbt debug --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
 
 dbt-run: ensure-logs
-	dbt run --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/ --full-refresh
+	poetry run dbt run --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/ --full-refresh
 
 dbt-run-incremental: ensure-logs
-	dbt run --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+	poetry run dbt run --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
 
 dbt-build: ensure-logs
-	dbt build --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+	poetry run dbt build --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
 
 dbt-clean:
-	dbt clean --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+	poetry run dbt clean --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
 
 dbt-deps:
-	dbt deps --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+	poetry run dbt deps --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
 
 dbt-test: ensure-logs
-	dbt test --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
+	poetry run dbt test --profiles-dir ./config/base/ --project-dir ./fdadata/transformations --log-path ./logs/dbt/
 
 # SQL Formatting
 sql-format:
-	sqlfluff fix --dialect postgres fdadata/transformations/models
+	poetry run sqlfluff fix --dialect postgres fdadata/transformations/models fdadata/transformations/tests
 
 # Ensure logs directory exists
 ensure-logs:
